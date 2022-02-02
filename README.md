@@ -8,6 +8,14 @@
 
 In this project, you can use `git cz` command to help you commit normatively.
 
+> git: 'cz' is not a git command. See 'git --help'?
+>
+> Install Commitizen first:
+>
+> ```bash
+> npm install commitizen -g
+> ```
+
 By the way, we advice you to use GPG keys to verify your commits.
 
 ## Front-end technology stack

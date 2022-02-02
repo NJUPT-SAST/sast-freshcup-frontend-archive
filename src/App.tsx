@@ -8,11 +8,12 @@ import Admin from "./pages/Admin/Admin";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Login />}></Route>
-      <Route path="/Student" element={<Student />}>
-        <Route path=""></Route>
+      <Route index element={<Login />}></Route>
+      <Route path="/student" element={<Student />}>
+        <Route index element></Route>
       </Route>
-      <Route path="/Admin" element={<Admin />}></Route>
+      <Route path="/admin" element={<Admin />}></Route>
+      <Route path="/superadmin" element></Route>
     </Routes>
   );
 }

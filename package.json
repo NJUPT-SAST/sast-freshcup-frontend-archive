@@ -1,6 +1,7 @@
 {
   "name": "sast-freshcup-frontend-refresh",
   "version": "0.1.0",
+  "proxy": "http://101.35.46.160",
   "private": true,
   "dependencies": {
     "@douyinfe/semi-ui": "^2.3.0",
