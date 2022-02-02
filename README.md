@@ -2,79 +2,58 @@
 
 ~~试制二二年式新柚杯答题系统~~
 
-## About Commit
+## 关于 Commit
 
-**Please PUSH with standard commit messages which conform to the specification!**
+在该项目中，我们使用 `git cz` 命令来去帮助撰写规范的 Commit message
 
-In this project, you can use `git cz` command to help you commit normatively.
-
-> git: 'cz' is not a git command. See 'git --help'?
+> Git报错 git: 'cz' is not a git command. See 'git --help' 怎么办?
 >
-> Install Commitizen first:
+> 我们需要先使用 npm 全局安装 commitizen（*不能使用 yarn），命令如下:
 >
 > ```bash
 > npm install commitizen -g
 > ```
 
-By the way, we advice you to use GPG keys to verify your commits.
+**请务必 PUSH 符合 Angular 规范的 Commit 信息！**
 
-## Front-end technology stack
+同时我们推荐使用 GPG 签名你的 Git 提交，使它安全可信（Verified）
 
-Mainly based on
+## 前端使用的技术
 
-Language: TypeScript
+语言: TypeScript
 
-UI & Component library: Semi Design
+UI组件库: Semi Design
 
-API call: Axios
+调用API: Axios
 
-Global state management: Recoil
+全局状态管理: Recoil
 
-**Attention! The react-router-dom version is 6.0+ and we prefer to use recoil to manage the components' state.**
+**需要注意的是，我们使用的 react-router-dom 版本为 6.0+ ，在使用上与v5版本存在较大差异，在开始撰写或修改路由配置之前，我们推荐首先阅读 [Getting Started](https://github.com/remix-run/react-router/tree/main/docs/getting-started)。同时我们应当更倾向于去使用 Recoil 来去管理复杂组件的状态。**
 
-## Getting Started with Create React App
+## 使用指北
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+该项目使用 [Create React App](https://github.com/facebook/create-react-app) 构建
 
-### Available Scripts
+### 运行
 
-In the project directory, you can run:
+在项目目录下，可以执行 `yarn start` 命令来让该项目运行在开发模式。
 
-`yarn start`
+在项目启动后可以在浏览器中打开 [http://localhost:3000](http://localhost:3000) 来去查看该项目
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+在对代码进行编辑并保存后，网页将会被热重载，同时全部的 lint 错误信息会被打印在命令行中
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 打包
 
-`yarn test`
+使用 `yarn build` 可以打包出用于生产的应用程序，生成的文件会被放置在 `build` 文件夹下
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+用于生产的 React 代码在构建时经过了优化，因此其具有最佳的性能
 
-`yarn build`
+打包与构建将会减小代码体积，同时文件名会使用哈希值进行混淆。你的项目已可以部署！
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+有关部署的详细信息可以参阅 [deployment](https://facebook.github.io/create-react-app/docs/deployment) 的部分
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 更多
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+有关 Create React App [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)
 
-`yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-### Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+学习 React [React documentation](https://reactjs.org/)
