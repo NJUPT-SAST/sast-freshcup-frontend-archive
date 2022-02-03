@@ -1,51 +1,45 @@
 import { IconComment, IconGithubLogo, IconMail } from "@douyinfe/semi-icons";
-import { Row, Col } from "@douyinfe/semi-ui";
+import { Row, Col, Typography } from "@douyinfe/semi-ui";
 import "./Footer.css";
 
-export default function Footer() {
+const { Text } = Typography;
+
+export default function SemiFooter() {
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "space-between",
         padding: "20px",
         color: "var(--semi-color-text-2)",
-        backgroundColor: "rgba(var(--semi-blue-9), 1)",
+        backgroundColor: "rgba(var(--semi-grey-0), 1)",
       }}
     >
-      <Row>
-        <Col>
+      <Row type="flex" align="middle">
+        <Col xs={{ span: 24 }} sm={{ span: 24 }} md={{ span: 9, offset: 2 }}>
           <p>Igniting the Thought!</p>
-          <p>南京邮电大学大学生科学技术协会（简称SAST）是在校团委指导下，</p>
-          <div>独立展开活动的学生科技文化及学术研究组织。</div>
-          <div>Copyright © NJUPT.SAST 1992-2021</div>
+          <p>
+            南京邮电大学大学生科学技术协会（简称SAST）是在校团委指导下，独立展开活动的学生科技文化及学术研究组织。
+          </p>
         </Col>
-        <Col>
-          <div>
-            <span style={{ fontSize: "20px" }}>Contact Us</span>
+        <Col xs={{ span: 24 }} sm={{ span: 24 }} md={{ span: 9, offset: 2 }}>
+          <span className="footer-title">Contact Us</span>
+          <div className="footer-link">
+            
+            <a href="mailto:sast@njupt.edu.cn"><IconMail className="footer-icon" />Mail to us</a>
           </div>
-          <div>
-            <a href="mailto:sast@njupt.edu.cn">
-              <span>
-                <IconMail />
-              </span>
-              <span>Mail to us</span>
-            </a>
+          <div className="footer-link">
+            <div style={{scale:1.5}}></div>
+            
+            <a href="https://github.com/NJUPT-SAST-Technology-Center"><IconGithubLogo className="footer-icon" />Github</a>
           </div>
-          <div>
-            <a href="https://github.com/NJUPT-SAST-Technology-Center">
-              <span>
-                <IconGithubLogo />
-              </span>
-              <span>Github</span>
-            </a>
+          <div className="footer-link">
+            
+            <span><IconComment size="inherit" className="footer-icon" />QQ 2595331904</span>
           </div>
-          <div>
-            <span>
-              <IconComment />
-            </span>
-            <span>QQ 2595331904</span>
-          </div>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={{ span: 24 }} sm={{ span: 24 }} md={{ span: 22, offset: 2 }}>
+          <p>Copyright © NJUPT.SAST 1992-2022</p>
         </Col>
       </Row>
     </div>

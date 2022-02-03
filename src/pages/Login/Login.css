@@ -1,4 +1,34 @@
-.login-form {
-  height: calc(100vh - 100px);
+.login-layout {
+  min-height: 100vh;
+}
 
+.login-content {
+  padding-top: 20vh;
+}
+
+.login-form {
+  width: 270px;
+}
+
+.captcha {
+  display: flex;
+  flex-direction: row;
+}
+
+.captcha-input-wrapper {
+  padding-right: 10px;
+  width: calc(100% - 128px);
+}
+
+.captcha-image {
+  border-radius: 4px;
+  margin-top: 36px;
+  height: 32px;
+  width: auto;
+  align-items: end;
+}
+
+.login-button {
+  width:100%;
+  margin-top: 12px;
 }
