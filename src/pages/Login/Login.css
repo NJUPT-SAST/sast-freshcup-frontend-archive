@@ -2,33 +2,15 @@
   min-height: 100vh;
 }
 
-.login-content {
-  padding-top: 20vh;
-}
-
-.login-form {
-  width: 270px;
-}
-
-.captcha {
-  display: flex;
-  flex-direction: row;
-}
-
-.captcha-input-wrapper {
+.captcha-input {
   padding-right: 10px;
   width: calc(100% - 128px);
 }
 
 .captcha-image {
-  border-radius: 4px;
+  border-radius: var(--semi-border-radius-small);
   margin-top: 36px;
   height: 32px;
   width: auto;
   align-items: end;
-}
-
-.login-button {
-  width:100%;
-  margin-top: 12px;
 }

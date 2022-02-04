@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getValidateCode, login } from "../../api/login";
 import SemiFooter from "../../components/Footer/Footer";
+import SemiHeader from "../../components/Header/Header";
 import "./Login.css";
 
 const { Input } = Form;
@@ -53,8 +54,8 @@ export default function Login() {
       ).then((res) => {
         console.log(res, res.data.success, res.data.data.role);
         if (res.data.success === true) {
-          localStorage.setItem("token", res.data.token);
-          localStorage.setItem("role", res.data.role);
+          localStorage.setItem("token", res.data.data.token);
+          localStorage.setItem("role", res.data.data.role);
           switch (parseInt(res.data.data.role)) {
             case 0:
               navigate("/student");
@@ -83,9 +84,12 @@ export default function Login() {
 
   return (
     <Layout className="login-layout">
-      <Content className="login-content">
+      <Header>
+        <SemiHeader text="新柚杯比赛系统" />
+      </Header>
+      <Content style={{ paddingTop: "15vh", paddingBottom: "15vh" }}>
         <Row type="flex" justify="center" align="middle">
-          <Col className="login-form">
+          <Col style={{ width: "270px" }}>
             <Form
               render={({ values }) => (
                 <>
@@ -102,8 +106,8 @@ export default function Login() {
                     mode="password"
                     rules={[{ required: true, message: "请填写密码！" }]}
                   />
-                  <Row className="captcha">
-                    <div className="captcha-input-wrapper">
+                  <Row style={{ display: "flex", flexDirection: "row" }}>
+                    <div className="captcha-input">
                       <Input
                         field="captcha"
                         label="验证码"
@@ -121,13 +125,13 @@ export default function Login() {
                     />
                   </Row>
                   <Button
-                    className="login-button"
                     theme="solid"
                     type="primary"
                     htmlType="submit"
                     onClick={() => {
                       Login(values);
                     }}
+                    style={{ width: "100%", marginTop: "12px" }}
                   >
                     登录
                   </Button>

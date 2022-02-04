@@ -3,16 +3,12 @@ a:link, a:hover, a:active, a:visited {
   text-decoration: none;
 }
 
-.footer-title {
-  font-size: 20px;
-}
-
 .footer-link {
   display: flex;
   flex-direction: row;
-  align-items: center;
 }
 
 .footer-icon {
+  padding: 3px;
   margin-right: 5px;
 }
