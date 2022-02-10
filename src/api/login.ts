@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const baseURL = null;
-
 export const getValidateCode = () => {
   return axios.get("/getValidateCode", {
     responseType: "blob",

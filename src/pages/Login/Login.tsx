@@ -1,4 +1,3 @@
-import { IconLock, IconUser } from "@douyinfe/semi-icons";
 import {
   Form,
   Row,
@@ -7,11 +6,12 @@ import {
   Button,
   Notification,
 } from "@douyinfe/semi-ui";
+import { IconLock, IconUser } from "@douyinfe/semi-icons";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getValidateCode, login } from "../../api/login";
-import SemiFooter from "../../components/Footer/Footer";
 import SemiHeader from "../../components/Header/Header";
+import SemiFooter from "../../components/Footer/Footer";
 import "./Login.css";
 
 const { Input } = Form;
@@ -87,7 +87,12 @@ export default function Login() {
       <Header>
         <SemiHeader text="新柚杯比赛系统" />
       </Header>
-      <Content style={{ paddingTop: "15vh", paddingBottom: "15vh" }}>
+      <Content
+        style={{
+          padding: "15vh 24px",
+          backgroundColor: "var(--semi-color-bg-0)",
+        }}
+      >
         <Row type="flex" justify="center" align="middle">
           <Col style={{ width: "270px" }}>
             <Form
