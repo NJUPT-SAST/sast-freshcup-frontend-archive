@@ -1,6 +1,6 @@
 import { Row, Col } from "@douyinfe/semi-ui";
 import { IconComment, IconGithubLogo, IconMail } from "@douyinfe/semi-icons";
-import "./Footer.css";
+import "./Footer.sass";
 
 export default function SemiFooter() {
   return (

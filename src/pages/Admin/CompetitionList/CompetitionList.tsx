@@ -1,6 +1,14 @@
-import { Button, Col, Layout, Pagination, Row, Space, Typography } from "@douyinfe/semi-ui";
+import {
+  Button,
+  Col,
+  Layout,
+  Pagination,
+  Row,
+  Space,
+  Typography,
+} from "@douyinfe/semi-ui";
 import SemiHeader from "../../../components/Header/Header";
-import { Card } from '@douyinfe/semi-ui';
+import { Card } from "@douyinfe/semi-ui";
 import Meta from "@douyinfe/semi-ui/lib/es/card/meta";
 import Sider from "@douyinfe/semi-ui/lib/es/layout/Sider";
 import { useState, useEffect, SetStateAction } from "react";
@@ -12,44 +20,49 @@ const { Header, Content, Footer } = Layout;
 const { Text } = Typography;
 
 const CardItem = (props: any) => {
-
   let navigate = useNavigate();
   const { id, name } = props.item;
   return (
     <Card
-      shadows='hover'
+      shadows="hover"
       // style={{ height: 160 }}
-      footerStyle={{ display: 'flex', justifyContent: 'flex-end' }}
+      footerStyle={{ display: "flex", justifyContent: "flex-end" }}
       footer={
         <Space>
           <Button
-            theme='borderless'
-            type='primary'
-            onClick={() => navigate("/admin/"+id)}
-          >More</Button>
+            theme="borderless"
+            type="primary"
+            onClick={() => {
+              console.log(id);
+              navigate(`/admin/${id}`);
+            }}
+          >
+            More
+          </Button>
         </Space>
       }
       bodyStyle={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between'
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
       }}
     >
-      <Meta
-        title={name}
-      />
+      <Meta title={name} />
     </Card>
-  )
-}
+  );
+};
 
 export default function CompetitionList() {
-
   const [CompetitionList, setCompetitionList] = useState([]);
   const [Total, setTotal] = useState(0);
   const [PageNum, setPageNum] = useState(1);
   const onPageChange = (currentPage: SetStateAction<number>) => {
     setPageNum(currentPage);
-    getCompetitionList(currentPage.toString(), "6", localStorage.getItem("token"))
+    getCompetitionList(
+      currentPage.toString(),
+      "6",
+      localStorage.getItem("token")
+    )
       .then((res) => {
         //console.log(res.data);
         if (res.data.success === true) {
@@ -63,7 +76,7 @@ export default function CompetitionList() {
       .catch((error) => {
         // console.log(error);
       });
-  }
+  };
   useEffect(() => {
     getCompetitionList("1", "6", localStorage.getItem("token"))
       .then((res) => {
@@ -88,8 +101,9 @@ export default function CompetitionList() {
       <Layout>
         <Sider
           style={{
-            width: "40px"
-          }} />
+            width: "40px",
+          }}
+        />
         <Content
           style={{
             padding: "48px",
@@ -101,17 +115,16 @@ export default function CompetitionList() {
             {CompetitionList.length > 0 &&
               CompetitionList.map((item) => (
                 <Col span={8}>
-                  <CardItem
-                    item={item} />
+                  <CardItem item={item} />
                 </Col>
-              ))
-            }
+              ))}
           </Row>
         </Content>
         <Sider
           style={{
-            width: "40px"
-          }} />
+            width: "40px",
+          }}
+        />
       </Layout>
       <Row type="flex" justify="center" align="middle">
         <Col>
@@ -123,7 +136,7 @@ export default function CompetitionList() {
             onPageChange={onPageChange}
             style={{
               marginBottom: 12,
-              alignContent: "center"
+              alignContent: "center",
             }}
           ></Pagination>
         </Col>

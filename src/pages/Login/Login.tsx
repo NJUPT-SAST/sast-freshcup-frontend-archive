@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { getValidateCode, login } from "../../api/login";
 import SemiHeader from "../../components/Header/Header";
 import SemiFooter from "../../components/Footer/Footer";
-import "./Login.css";
+import "./Login.sass";
 
 const { Input } = Form;
 const { Header, Content, Footer } = Layout;

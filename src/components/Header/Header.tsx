@@ -1,7 +1,7 @@
 import { Button, Typography, Col, Row } from "@douyinfe/semi-ui";
 import { IconExit } from "@douyinfe/semi-icons";
 import SASTLogo from "../../assets/images/sast-logo.png";
-import "./Header.css";
+import "./Header.sass";
 
 const { Title } = Typography;
 
@@ -47,7 +47,7 @@ export default function SemiHeader(props: any) {
             src={SASTLogo}
             alt="SAST"
             style={{ height: "52px", marginTop: "4px", marginBottom: "4px" }}
-          ></img>
+          />
         </Col>
         <Col
           xs={{ span: 24 }}
