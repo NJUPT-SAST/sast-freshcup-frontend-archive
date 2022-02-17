@@ -58,7 +58,7 @@ export default function Login() {
           localStorage.setItem("role", res.data.data.role);
           switch (parseInt(res.data.data.role)) {
             case 0:
-              navigate("/student");
+              navigate("/student")
               break;
             case 1:
               navigate("/admin");

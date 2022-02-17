@@ -1,17 +1,34 @@
-import { Avatar, Col, Layout, Pagination, Popover, Row } from "@douyinfe/semi-ui";
+import { Button, Col, Layout, Pagination, Row, Space, Typography } from "@douyinfe/semi-ui";
 import SemiHeader from "../../../components/Header/Header";
 import { Card } from '@douyinfe/semi-ui';
 import Meta from "@douyinfe/semi-ui/lib/es/card/meta";
-import { IconInfoCircle } from '@douyinfe/semi-icons';
 import Sider from "@douyinfe/semi-ui/lib/es/layout/Sider";
+import { useState, useEffect, SetStateAction } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { getCompetitionList } from "../../../api/admin";
 
 const { Header, Content, Footer } = Layout;
+const { Text } = Typography;
 
-const CardItem = () => {
+const CardItem = (props: any) => {
+
+  let navigate = useNavigate();
+  const { id, name } = props.item;
   return (
     <Card
       shadows='hover'
-      style={{ height: 160 }}
+      // style={{ height: 160 }}
+      footerStyle={{ display: 'flex', justifyContent: 'flex-end' }}
+      footer={
+        <Space>
+          <Button
+            theme='borderless'
+            type='primary'
+            onClick={() => navigate("/admin/"+id)}
+          >More</Button>
+        </Space>
+      }
       bodyStyle={{
         display: 'flex',
         alignItems: 'center',
@@ -19,31 +36,50 @@ const CardItem = () => {
       }}
     >
       <Meta
-        title="Semi Doc"
-        avatar={
-          <Avatar
-            alt='Card meta img'
-            size="default"
-            src='https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/card-meta-avatar-docs-demo.jpg'
-          />
-        }
+        title={name}
       />
-      <Popover
-        position='top'
-        showArrow
-        content={
-          <article style={{ padding: 6 }}>
-            这是一个 Card
-          </article>
-        }
-      >
-        <IconInfoCircle style={{ color: 'var(--semi-color-primary)' }} />
-      </Popover>
     </Card>
   )
 }
 
 export default function CompetitionList() {
+
+  const [CompetitionList, setCompetitionList] = useState([]);
+  const [Total, setTotal] = useState(0);
+  const [PageNum, setPageNum] = useState(1);
+  const onPageChange = (currentPage: SetStateAction<number>) => {
+    setPageNum(currentPage);
+    getCompetitionList(currentPage.toString(), "6", localStorage.getItem("token"))
+      .then((res) => {
+        //console.log(res.data);
+        if (res.data.success === true) {
+          // console.log(res.data.data.records);
+          setCompetitionList(res.data.data.records);
+          setTotal(res.data.data.total);
+        } else {
+          console.log(res.data.errMsg);
+        }
+      })
+      .catch((error) => {
+        // console.log(error);
+      });
+  }
+  useEffect(() => {
+    getCompetitionList("1", "6", localStorage.getItem("token"))
+      .then((res) => {
+        //console.log(res.data);
+        if (res.data.success === true) {
+          // console.log(res.data.data.records);
+          setCompetitionList(res.data.data.records);
+          setTotal(res.data.data.total);
+        } else {
+          console.log(res.data.errMsg);
+        }
+      })
+      .catch((error) => {
+        // console.log(error);
+      });
+  }, []);
   return (
     <Layout>
       <Header>
@@ -58,16 +94,18 @@ export default function CompetitionList() {
           style={{
             padding: "48px",
             backgroundColor: "var(--semi-color-bg-0)",
+            minHeight: "416px",
           }}
         >
           <Row gutter={[72, 48]}>
-            <Col span={8}> <CardItem />
-            </Col><Col span={8}> <CardItem />
-            </Col><Col span={8}> <CardItem />
-            </Col><Col span={8}> <CardItem />
-            </Col><Col span={8}> <CardItem />
-            </Col><Col span={8}> <CardItem />
-            </Col>
+            {CompetitionList.length > 0 &&
+              CompetitionList.map((item) => (
+                <Col span={8}>
+                  <CardItem
+                    item={item} />
+                </Col>
+              ))
+            }
           </Row>
         </Content>
         <Sider
@@ -77,7 +115,17 @@ export default function CompetitionList() {
       </Layout>
       <Row type="flex" justify="center" align="middle">
         <Col>
-          <Pagination showTotal total={10} pageSize={6} style={{ marginBottom: 12, alignContent: "center" }} ></Pagination>
+          <Pagination
+            showTotal
+            total={Total}
+            pageSize={6}
+            currentPage={PageNum}
+            onPageChange={onPageChange}
+            style={{
+              marginBottom: 12,
+              alignContent: "center"
+            }}
+          ></Pagination>
         </Col>
       </Row>
       <Footer></Footer>
