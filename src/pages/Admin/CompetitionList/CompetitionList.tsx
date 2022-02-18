@@ -5,9 +5,7 @@ import {
   Pagination,
   Row,
   Space,
-  Typography,
 } from "@douyinfe/semi-ui";
-import SemiHeader from "../../../components/Header/Header";
 import { Card } from "@douyinfe/semi-ui";
 import Meta from "@douyinfe/semi-ui/lib/es/card/meta";
 import Sider from "@douyinfe/semi-ui/lib/es/layout/Sider";
@@ -16,8 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 import { getCompetitionList } from "../../../api/admin";
 
-const { Header, Content, Footer } = Layout;
-const { Text } = Typography;
+const { Content, Footer } = Layout;
 
 const CardItem = (props: any) => {
   let navigate = useNavigate();
@@ -33,7 +30,7 @@ const CardItem = (props: any) => {
             theme="borderless"
             type="primary"
             onClick={() => {
-              console.log(id);
+              // console.log(id);
               navigate(`/admin/${id}`);
             }}
           >
@@ -53,6 +50,7 @@ const CardItem = (props: any) => {
 };
 
 export default function CompetitionList() {
+  const PageSize = 6
   const [CompetitionList, setCompetitionList] = useState([]);
   const [Total, setTotal] = useState(0);
   const [PageNum, setPageNum] = useState(1);
@@ -60,7 +58,7 @@ export default function CompetitionList() {
     setPageNum(currentPage);
     getCompetitionList(
       currentPage.toString(),
-      "6",
+      PageSize.toString(),
       localStorage.getItem("token")
     )
       .then((res) => {
@@ -78,7 +76,7 @@ export default function CompetitionList() {
       });
   };
   useEffect(() => {
-    getCompetitionList("1", "6", localStorage.getItem("token"))
+    getCompetitionList("1", PageSize.toString(), localStorage.getItem("token"))
       .then((res) => {
         //console.log(res.data);
         if (res.data.success === true) {
@@ -95,9 +93,6 @@ export default function CompetitionList() {
   }, []);
   return (
     <Layout>
-      <Header>
-        <SemiHeader text="新柚杯比赛管理系统" logout={true} />
-      </Header>
       <Layout>
         <Sider
           style={{
@@ -131,7 +126,7 @@ export default function CompetitionList() {
           <Pagination
             showTotal
             total={Total}
-            pageSize={6}
+            pageSize={PageSize}
             currentPage={PageNum}
             onPageChange={onPageChange}
             style={{

@@ -1,15 +1,15 @@
 import { Button, Card, Col, Form, Layout, Pagination, Row } from "@douyinfe/semi-ui";
 import SemiHeader from "../../../components/Header/Header";
 import Sider from "@douyinfe/semi-ui/lib/es/layout/Sider";
+import { useParams } from "react-router-dom";
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 export default function Correcting() {
+  const { id } = useParams();
+  console.log(id)
   return (
     <Layout>
-      <Header>
-        <SemiHeader text="新柚杯比赛管理系统" logout={true} />
-      </Header>
       <Layout>
         <Sider
           style={{
