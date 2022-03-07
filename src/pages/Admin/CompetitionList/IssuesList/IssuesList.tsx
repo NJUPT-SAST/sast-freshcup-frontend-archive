@@ -2,12 +2,11 @@ import { Button, Layout, Pagination, Row, Col, Card, Space, Typography, ButtonGr
 import { IconPlusCircle } from "@douyinfe/semi-icons";
 import { getIssuesList, deleteIssue } from "../../../../api/admin";
 import { useState, useEffect, SetStateAction } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const { Content, Footer, Sider } = Layout;
-
 const CardItem = (props: any) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { problemName } = props.item;
   const deleteit = () => {
     deleteIssue(
@@ -34,13 +33,20 @@ const CardItem = (props: any) => {
       title={problemName}
       headerExtraContent={
         <ButtonGroup size='small'>
-          <Button 
-          type='tertiary'
-          onClick={() => {
+          <Button
+            type='tertiary'
+            onClick={() => {
               navigate(`/admin/correct/${props.item.id}`);
             }}
           >批改</Button>
-          <Button type='primary'>编辑</Button>
+          <Button
+            type='primary'
+            onClick={() => {
+              navigate(`edit`, { state: 2 });
+            }}
+          >
+            编辑
+          </Button>
           <Button
             type='danger'
             onClick={() => {
@@ -60,6 +66,7 @@ const CardItem = (props: any) => {
 };
 
 export default function IssuesList() {
+  const navigate = useNavigate();
   const PageSize = 10
   const { id } = useParams();
   const [IssuesList, setIssuesList] = useState([]);
@@ -144,6 +151,9 @@ export default function IssuesList() {
             type="primary"
             style={{ marginRight: 8 }}
             icon={<IconPlusCircle />}
+            onClick={() => {
+              navigate(`new`, { state: 1 });
+            }}
           >
             创建题目
           </Button>

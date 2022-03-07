@@ -1,10 +1,13 @@
 import React from "react";
 import { ArrayField, Button, Col, Form, Layout, Row } from "@douyinfe/semi-ui";
 import { IconMinusCircle, IconPlusCircle } from "@douyinfe/semi-icons";
+import { useLocation } from "react-router-dom";
 
 const { Content } = Layout;
 
 export default function EditIssues() {
+  const param = useLocation()
+  console.log(param.state);
   return (
     <Content
       style={{
@@ -17,7 +20,8 @@ export default function EditIssues() {
           <React.Fragment>
             <Form.Input field="Issue" label="题目名称" style={{ width: 320 }} />
             <Form.Select field="Type" label="题型" style={{ width: 160 }}>
-              <Form.Select.Option value="select">选择题</Form.Select.Option>
+              <Form.Select.Option value="singleSelect">单选题</Form.Select.Option>
+              <Form.Select.Option value="multiSelect">多选题</Form.Select.Option>
               <Form.Select.Option value="answer">简答题</Form.Select.Option>
             </Form.Select>
             <Form.TextArea
@@ -51,24 +55,28 @@ export default function EditIssues() {
                 </React.Fragment>
               )}
             </ArrayField>
-            <Row>
-              <Col span={4}>
-                <Form.Switch field="isChecked" label="自动批改"></Form.Switch>
-              </Col>
-              <Col span={8}>
-                {formState.values.isChecked === true ? (
-                  <Form.Select
-                    field="CorrectAnswer"
-                    label="正确答案"
-                    style={{ width: 160 }}
-                  >
-                    <Form.Select.Option value={1}>1</Form.Select.Option>
-                    <Form.Select.Option value={2}>2</Form.Select.Option>
-                    <Form.Select.Option value={3}>3</Form.Select.Option>
-                  </Form.Select>
-                ) : null}
-              </Col>
-            </Row>
+            {(formState.values.Type === "singleSelect" && (
+              <Form.Select
+                field="SingleCorrectAnswer"
+                label="正确答案"
+                style={{ width: 160 }}
+              >
+                <Form.Select.Option value={1}>1</Form.Select.Option>
+                <Form.Select.Option value={2}>2</Form.Select.Option>
+                <Form.Select.Option value={3}>3</Form.Select.Option>
+              </Form.Select>
+            )) || (formState.values.Type === "multiSelect" && (
+              <Form.Select
+                multiple
+                field="MultiCorrectAnswer"
+                label="正确答案"
+                style={{ width: 160 }}
+              >
+                <Form.Select.Option value={1}>1</Form.Select.Option>
+                <Form.Select.Option value={2}>2</Form.Select.Option>
+                <Form.Select.Option value={3}>3</Form.Select.Option>
+              </Form.Select>
+            ))}
             <Row>
               <Col span={3}>
                 <Button theme="solid" type="danger" style={{ margin: 8 }}>
