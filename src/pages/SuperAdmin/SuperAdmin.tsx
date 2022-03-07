@@ -1,22 +1,17 @@
 import { Layout } from "@douyinfe/semi-ui";
+import { Outlet } from "react-router-dom";
 import SemiHeader from "../../components/Header/Header";
+import "./SuperAdmin.sass";
 
 const { Header, Content, Footer } = Layout;
 
 export default function SuperAdmin() {
   return (
-    <Layout>
+    <Layout className="layout">
       <Header>
         <SemiHeader text="新柚杯比赛管理系统" logout={true} />
       </Header>
-      <Content
-        style={{
-          padding: "24px",
-          backgroundColor: "var(--semi-color-bg-0)",
-        }}
-      >
-        SuperAdmin
-      </Content>
+      <Outlet />
       <Footer></Footer>
     </Layout>
   );
