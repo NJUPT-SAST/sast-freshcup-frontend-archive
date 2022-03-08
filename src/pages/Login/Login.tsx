@@ -52,13 +52,17 @@ export default function Login() {
         values.captcha,
         captcha.code
       ).then((res) => {
-        console.log(res, res.data.success, res.data.data.role);
         if (res.data.success === true) {
+          console.log(res, res.data.success, res.data.data.role);
           localStorage.setItem("token", res.data.data.token);
           localStorage.setItem("role", res.data.data.role);
+          Notification.success({
+            title: "登录成功",
+            duration: 1,
+          });
           switch (parseInt(res.data.data.role)) {
             case 0:
-              navigate("/student")
+              navigate("/student");
               break;
             case 1:
               navigate("/admin");
@@ -74,6 +78,13 @@ export default function Login() {
                 duration: 3,
               });
           }
+        } else {
+          Notification.error({
+            title: "登录失败",
+            content: res.data.errMsg,
+            duration: 3,
+          });
+          Captcha();
         }
       });
   };

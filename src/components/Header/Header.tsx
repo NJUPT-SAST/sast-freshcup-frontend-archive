@@ -2,7 +2,7 @@ import { Button, Typography, Col, Row } from "@douyinfe/semi-ui";
 import { IconExit } from "@douyinfe/semi-icons";
 import SASTLogo from "../../assets/images/sast-logo.png";
 import "./Header.sass";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const { Title } = Typography;
 
@@ -18,13 +18,13 @@ export default function SemiHeader(props: any) {
             color: "var(--semi-color-text-2)",
             marginRight: "12px",
           }}
-          onClick={()=>{
-            localStorage.removeItem('token');
-            localStorage.removeItem('role');
+          onClick={() => {
+            localStorage.removeItem("token");
+            localStorage.removeItem("role");
             navigate("/");
           }}
         >
-          退出登录
+          注销
         </Button>
       );
     } else return null;
@@ -33,32 +33,13 @@ export default function SemiHeader(props: any) {
   return (
     <div className="header-content">
       <Row type="flex" justify="center" align="middle">
-        <Col
-          xs={{ span: 0 }}
-          sm={{ span: 0 }}
-          md={{ span: 4 }}
-          style={{
-            display: "flex",
-            justifyContent: "left",
-            paddingLeft: "16px",
-          }}
-        >
+        <Col className="sast-logo-wrapper" span={4}>
           <img className="sast-logo" src={SASTLogo} alt="SAST" />
         </Col>
-        <Col
-          xs={{ span: 24 }}
-          sm={{ span: 24 }}
-          md={{ span: 16 }}
-          style={{ display: "flex", justifyContent: "center" }}
-        >
+        <Col className="title-wrapper" span={16}>
           <Title heading={5}>{props.text}</Title>
         </Col>
-        <Col
-          xs={{ span: 24 }}
-          sm={{ span: 24 }}
-          md={{ span: 4 }}
-          style={{ display: "flex", justifyContent: "right" }}
-        >
+        <Col className="logout-wrapper" span={4}>
           <LogoutButton />
         </Col>
       </Row>
