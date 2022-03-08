@@ -8,17 +8,14 @@ import SuperAdmin from "./pages/SuperAdmin/SuperAdmin";
 import IssuesList from "./pages/Admin/CompetitionList/IssuesList/IssuesList";
 import AdminCompetitionList from "./pages/Admin/CompetitionList/CompetitionList";
 import Correcting from "./pages/Admin/Correcting/Correcting";
-<<<<<<< HEAD
-import EditIssues from "./pages/Admin/CompetitionList/IssuesList/EditIssues/EditIssues";
-import Issues from "./pages/Admin/CompetitionList/Issues";
-=======
 import SuperAdminCompetitionList from "./pages/SuperAdmin/CompetitionList/CompetitionList";
 import SuperAdminCompetitionManage from "./pages/SuperAdmin/CompetitionManage/CompetitionManage";
 import SuperAdminCompetitionSetting from "./pages/SuperAdmin/CompetitionManage/CompetitionSetting/CompetitionSetting";
 import SuperAdminQuestionSetting from "./pages/SuperAdmin/CompetitionManage/QuestionSetting/QuestionSetting";
 import SuperAdminStudentAccount from "./pages/SuperAdmin/CompetitionManage/StudentAccount/StudentAccount";
 import SuperAdminAuthorizeAdmin from "./pages/SuperAdmin/CompetitionManage/AuthorizeAdmin/AuthorizeAdmin";
->>>>>>> 9b442d243b34421cb3630bd9a6481de97fa4a10a
+import CompetitionList from "./pages/Student/CompetitionList/CompetitionList";
+import Subjective from "./pages/Student/TaskType/Subjective/Subjective";
 
 function App() {
   const navigate = useNavigate();
@@ -31,26 +28,16 @@ function App() {
     <Routes>
       <Route index element={<Login />}></Route>
       <Route path="/student" element={<Student />}>
-        <Route index element></Route>
+        <Route index element={<CompetitionList/>}></Route>
+        <Route path="/student/Subjective" element={<Subjective />}></Route>
       </Route>
       <Route path="/admin" element={<Admin />}>
-<<<<<<< HEAD
-        <Route index element={<CompetitionList />}></Route>
-        <Route path=":id" element={<Issues/>}>
-          <Route index element={<IssuesList />}></Route>
-          <Route path="new" element={<EditIssues/>}></Route>
-          <Route path="edit" element={<EditIssues/>}></Route>
-        </Route>
-=======
         <Route index element={<AdminCompetitionList />}></Route>
         <Route path=":id" element={<IssuesList />}></Route>
->>>>>>> 9b442d243b34421cb3630bd9a6481de97fa4a10a
       </Route>
       <Route path="/admin/correct" element={<Admin />}>
         <Route index element={<Correcting />}></Route>
         <Route path=":id" element={<Correcting />}></Route>
-<<<<<<< HEAD
-=======
       </Route>
       <Route path="/superadmin" element={<SuperAdmin />}>
         <Route index element={<SuperAdminCompetitionList />}></Route>
@@ -66,7 +53,6 @@ function App() {
             element={<SuperAdminAuthorizeAdmin />}
           ></Route>
         </Route>
->>>>>>> 9b442d243b34421cb3630bd9a6481de97fa4a10a
       </Route>
     </Routes>
   );
