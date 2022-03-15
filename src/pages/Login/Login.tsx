@@ -14,7 +14,6 @@ import SemiHeader from "../../components/Header/Header";
 import SemiFooter from "../../components/Footer/Footer";
 import "./Login.sass";
 
-const { Input } = Form;
 const { Header, Content, Footer } = Layout;
 
 export default function Login() {
@@ -41,53 +40,6 @@ export default function Login() {
       });
     });
   };
-  const Login = (values: any) => {
-    console.log(values);
-    values.username &&
-      values.password &&
-      values.captcha &&
-      login(
-        values.username,
-        values.password,
-        values.captcha,
-        captcha.code
-      ).then((res) => {
-        if (res.data.success === true) {
-          console.log(res, res.data.success, res.data.data.role);
-          localStorage.setItem("token", res.data.data.token);
-          localStorage.setItem("role", res.data.data.role);
-          Notification.success({
-            title: "登录成功",
-            duration: 1,
-          });
-          switch (parseInt(res.data.data.role)) {
-            case 0:
-              navigate("/student");
-              break;
-            case 1:
-              navigate("/admin");
-              break;
-            case 2:
-              navigate("/superadmin");
-              break;
-            default:
-              Notification.open({
-                title: "服务器错误",
-                content:
-                  "服务器返回了预期之外的数据，请联系系统管理员以解决该问题！",
-                duration: 3,
-              });
-          }
-        } else {
-          Notification.error({
-            title: "登录失败",
-            content: res.data.errMsg,
-            duration: 3,
-          });
-          Captcha();
-        }
-      });
-  };
 
   useEffect(() => {
     Captcha();
@@ -107,15 +59,15 @@ export default function Login() {
         <Row type="flex" justify="center" align="middle">
           <Col style={{ width: "270px" }}>
             <Form
-              render={({ values }) => (
+              render={({ formApi, values }) => (
                 <>
-                  <Input
+                  <Form.Input
                     prefix={<IconUser />}
                     field="username"
                     label="用户名"
                     rules={[{ required: true, message: "请填写用户名！" }]}
                   />
-                  <Input
+                  <Form.Input
                     prefix={<IconLock />}
                     field="password"
                     label="密码"
@@ -124,7 +76,7 @@ export default function Login() {
                   />
                   <Row style={{ display: "flex", flexDirection: "row" }}>
                     <div className="captcha-input">
-                      <Input
+                      <Form.Input
                         field="captcha"
                         label="验证码"
                         rules={[{ required: true, message: "请填写验证码！" }]}
@@ -137,6 +89,7 @@ export default function Login() {
                       alt="Captcha"
                       onClick={() => {
                         Captcha();
+                        formApi.setValue("captcha", null);
                       }}
                     />
                   </Row>
@@ -145,7 +98,57 @@ export default function Login() {
                     type="primary"
                     htmlType="submit"
                     onClick={() => {
-                      Login(values);
+                      console.log(values);
+                      values.username &&
+                        values.password &&
+                        values.captcha &&
+                        login(
+                          values.username,
+                          values.password,
+                          values.captcha,
+                          captcha.code
+                        ).then((res) => {
+                          if (res.data.success === true) {
+                            console.log(
+                              res,
+                              res.data.success,
+                              res.data.data.role
+                            );
+                            localStorage.setItem("token", res.data.data.token);
+                            localStorage.setItem("role", res.data.data.role);
+                            Notification.success({
+                              title: "登录成功",
+                              duration: 1,
+                            });
+                            switch (parseInt(res.data.data.role)) {
+                              case 0:
+                                navigate("/student");
+                                break;
+                              case 1:
+                                navigate("/admin");
+                                break;
+                              case 2:
+                                navigate("/superadmin");
+                                break;
+                              default:
+                                Notification.open({
+                                  title: "服务器错误",
+                                  content:
+                                    "服务器返回了预期之外的数据，请联系系统管理员以解决该问题！",
+                                  duration: 3,
+                                });
+                            }
+                          } else {
+                            console.log(res);
+                            Notification.error({
+                              title: "登录失败",
+                              content: res.data.errMsg,
+                              duration: 3,
+                            });
+                            formApi.setValue("captcha", null);
+                            Captcha();
+                          }
+                        });
                     }}
                     style={{ width: "100%", marginTop: "12px" }}
                   >
