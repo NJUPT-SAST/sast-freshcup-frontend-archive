@@ -15,7 +15,7 @@ import SuperAdminQuestionSetting from "./pages/SuperAdmin/CompetitionManage/Ques
 import SuperAdminStudentAccount from "./pages/SuperAdmin/CompetitionManage/StudentAccount/StudentAccount";
 import SuperAdminAuthorizeAdmin from "./pages/SuperAdmin/CompetitionManage/AuthorizeAdmin/AuthorizeAdmin";
 import CompetitionList from "./pages/Student/CompetitionList/CompetitionList";
-import Subjective from "./pages/Student/TaskType/Subjective/Subjective";
+import Task from "./pages/Student/Task";
 
 function App() {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function App() {
       <Route index element={<Login />}></Route>
       <Route path="/student" element={<Student />}>
         <Route index element={<CompetitionList/>}></Route>
-        <Route path="/student/Subjective" element={<Subjective />}></Route>
+        <Route path="/student/Task" element={<Task />}></Route>
       </Route>
       <Route path="/admin" element={<Admin />}>
         <Route index element={<AdminCompetitionList />}></Route>

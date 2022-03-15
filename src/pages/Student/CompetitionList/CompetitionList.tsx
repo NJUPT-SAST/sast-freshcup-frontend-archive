@@ -13,7 +13,7 @@ export default function CompetitionList(){
           </Row>
           <Row type="flex" justify="center" align="middle">
             <Col>
-              <Link to='./subjective'><Button theme='solid' type='primary'>进入比赛</Button></Link>
+              <Link to='/student/Task'><Button theme='solid' type='primary'>进入比赛</Button></Link>
             </Col>
           </Row>
         </Content>
