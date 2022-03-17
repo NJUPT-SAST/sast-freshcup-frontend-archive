@@ -1,19 +1,26 @@
 .contest-list
   display: flex
   flex-direction: row
-  flex-wrap: warp
+  flex-wrap: wrap
   flex-basis: 300px
-  width: 1000px
+  justify-content: center
+  padding: auto
   .add-contest-card
     flex-shrink: 0
-    flex-basis: 300px
-    // width: 300px
+    width: 300px
     height: 160px
     display: flex
     align-items: center
     justify-content: center
   .common-card
-    flex-shrink: 0
-    flex-basis: 300px
-    // width: 300px
+    margin: 15px
+    width: 300px
     height: 160px
+    .card-description
+      display: -webkit-box
+      overflow: hidden
+      -webkit-box-orient: vertical
+      text-overflow: -o-ellipsis-lastline
+      text-overflow: ellipsis
+      word-break: normal
+      -webkit-line-clamp: 3

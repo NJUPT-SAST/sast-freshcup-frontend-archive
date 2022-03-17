@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Card, Col, Layout, Row } from "@douyinfe/semi-ui";
+import { Button, Card, Col, Layout, Row } from "@douyinfe/semi-ui";
 import { IconPlus } from "@douyinfe/semi-icons";
 import { getContestList } from "../../../api/superadmin";
 import "./CompetitionList.sass";
@@ -27,13 +27,18 @@ export default function CompetitionList() {
         <Row>
           <Col>
             <div className="contest-list">
-              <Card className="add-contest-card">
+              <Card className="add-contest-card common-card">
                 <IconPlus size="extra-large" />
               </Card>
-              {contestList.map((item: any) => {
+              {contestList.map((item: any, index: number) => {
                 return (
-                  <Card className="common-card" title={item.name}>
-                    {item.description}
+                  <Card
+                    key={index}
+                    className="common-card"
+                    title={item.name}
+                    headerExtraContent={<Button></Button>}
+                  >
+                    <span className="card-description">{item.description}</span>
                   </Card>
                 );
               })}
