@@ -14,8 +14,10 @@ export default function SemiFooter() {
       <Row type="flex" align="top">
         <Col xs={{ span: 24 }} sm={{ span: 24 }} md={{ span: 9, offset: 2 }}>
           <p>Igniting the Thought!</p>
-          <p style={{ wordBreak: "keep-all" }}>
-            南京邮电大学大学生科学技术协会（简称SAST）是在校团委指导下，独立展开活动的学生科技文化及学术研究组织。
+          <p id="footer-sast-description">
+            南京邮电大学大学生科学技术协会（Students' Association for Science
+            and
+            Technology）是在校团委指导下，独立展开活动的学生科技文化及学术研究组织。
           </p>
         </Col>
         <Col xs={{ span: 24 }} sm={{ span: 24 }} md={{ span: 9, offset: 2 }}>
@@ -44,7 +46,7 @@ export default function SemiFooter() {
       </Row>
       <Row>
         <Col xs={{ span: 24 }} sm={{ span: 24 }} md={{ span: 22, offset: 2 }}>
-          <p>Copyright © NJUPT.SAST 1992-2022</p>
+          <p style={{ marginTop: 32 }}>Copyright © NJUPT.SAST 1992-2022</p>
         </Col>
       </Row>
     </div>
