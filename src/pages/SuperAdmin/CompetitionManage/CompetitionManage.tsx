@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Nav, Layout } from "@douyinfe/semi-ui";
 import {
   IconHome,
@@ -5,28 +6,39 @@ import {
   IconUserSetting,
   IconIdCard,
   IconCode,
+  IconChevronLeft,
 } from "@douyinfe/semi-icons";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Navigate, Outlet, useNavigate, useLocation } from "react-router-dom";
 
 const { Header, Content, Footer, Sider } = Layout;
 
 export default function CompetitionManage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [navigation, setNavigation] = useState("");
+
+  useEffect(() => {
+    // console.log((location?.pathname as any).match(/\/([^/]*)$/g)[0].match(/[a-z][^\s]*/g));
+    let match = (location?.pathname as any)
+      .match(/\/([^/]*)$/g)[0]
+      .match(/[a-z][^\s]*/g);
+    match ? setNavigation(match[0]) : setNavigation("");
+  }, [location]);
+
   return (
     <Layout>
       <Sider style={{ backgroundColor: "var(--semi-color-bg-1)" }}>
         <Nav
           style={{ maxWidth: 220, height: "100%" }}
-          defaultSelectedKeys={["Home"]}
-          onSelect={({
-            itemKey,
-            selectedKeys,
-            selectedItems,
-            domEvent,
-            isOpen,
-          }) => {
-            console.log(itemKey, selectedKeys, selectedItems, domEvent, isOpen);
-            navigate(`${selectedKeys[0]}`);
+          defaultSelectedKeys={[navigation]}
+          onSelect={({ itemKey }) => {
+            console.log(itemKey);
+            if(itemKey === "back"){
+              navigate("/superadmin");
+            }
+            else{setNavigation(itemKey.toString());
+              navigate(itemKey.toString());}
+            
           }}
           items={[
             {
@@ -48,6 +60,11 @@ export default function CompetitionManage() {
               itemKey: "authorize",
               text: "管理员授权",
               icon: <IconIdCard size="large" />,
+            },
+            {
+              itemKey: "back",
+              text: "返回",
+              icon: <IconChevronLeft size="large" />,
             },
           ]}
           footer={{

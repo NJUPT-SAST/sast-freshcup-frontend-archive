@@ -16,7 +16,7 @@ import SuperAdminStudentAccount from "./pages/SuperAdmin/CompetitionManage/Stude
 import SuperAdminAuthorizeAdmin from "./pages/SuperAdmin/CompetitionManage/AuthorizeAdmin/AuthorizeAdmin";
 import CompetitionList from "./pages/Student/CompetitionList/CompetitionList";
 import Task from "./pages/Student/Task";
-import NotFound from "./pages/NotFound/NotFound";
+import Error from "./pages/Error/Error";
 
 function App() {
   const navigate = useNavigate();
@@ -50,22 +50,13 @@ function App() {
           <Route index element={<SuperAdminCompetitionList />}></Route>
           <Route path=":id" element={<SuperAdminCompetitionManage />}>
             <Route index element={<SuperAdminCompetitionSetting />}></Route>
-            <Route
-              path="question"
-              element={<SuperAdminQuestionSetting />}
-            ></Route>
-            <Route
-              path="account"
-              element={<SuperAdminStudentAccount />}
-            ></Route>
-            <Route
-              path="authorize"
-              element={<SuperAdminAuthorizeAdmin />}
-            ></Route>
+            <Route path="question" element={<SuperAdminQuestionSetting />}></Route>
+            <Route path="account" element={<SuperAdminStudentAccount />}></Route>
+            <Route path="authorize" element={<SuperAdminAuthorizeAdmin />}></Route>
           </Route>
         </Route>
       ) : null}
-      <Route path="*" element={<NotFound />}></Route>
+      <Route path="*" element={<Error />}></Route>
     </Routes>
   );
 }
