@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { getValidateCode, login } from "../../api/login";
 import SemiHeader from "../../components/Header/Header";
 import SemiFooter from "../../components/Footer/Footer";
+import VoidCaptcha from "../../assets/images/void-captcha.png";
 import "./Login.sass";
 
 const { Header, Content, Footer } = Layout;
@@ -23,7 +24,7 @@ export default function Login() {
     code: string;
   }
   const [captcha, setCaptcha] = useState<captchaObject>({
-    url: "void",
+    url: VoidCaptcha,
     code: "void",
   });
   const Captcha = () => {

@@ -33,12 +33,12 @@ export default function CompetitionManage() {
           defaultSelectedKeys={[navigation]}
           onSelect={({ itemKey }) => {
             console.log(itemKey);
-            if(itemKey === "back"){
+            if (itemKey === "back") {
               navigate("/superadmin");
+            } else {
+              setNavigation(itemKey.toString());
+              navigate(itemKey.toString());
             }
-            else{setNavigation(itemKey.toString());
-              navigate(itemKey.toString());}
-            
           }}
           items={[
             {
