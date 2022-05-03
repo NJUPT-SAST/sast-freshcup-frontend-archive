@@ -18,36 +18,16 @@ export default function CompetitionList() {
   });
 
   useEffect(() => {
-    let truePageSize = filter.pageSize;
-    if (filter.pageNum === 1) truePageSize = filter.pageSize - 1;
-    getContestList(filter.pageNum, truePageSize).then((res) => {
+    getContestList(filter.pageNum, filter.pageSize).then((res) => {
       console.log(res);
       setContestRecords(res.data.data.records);
       setTotalContest(res.data.data.total);
     });
   }, [filter]);
 
-  function AddContestCard() {
-    console.log(filter.pageNum);
-    if (filter.pageNum === 1)
-      return (
-        <div
-          onClick={() => {
-            navigate("new");
-          }}
-        >
-          <Card className="add-contest-card common-card">
-            <IconPlus size="extra-large" />
-          </Card>
-        </div>
-      );
-    else return null;
-  }
-
   return (
     <Content className="contest-list-wrapper">
       <div className="contest-list">
-        <AddContestCard />
         {contestRecords.map((item: any, index: number) => {
           return (
             <Card
