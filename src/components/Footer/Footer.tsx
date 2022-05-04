@@ -15,9 +15,7 @@ export default function SemiFooter() {
         <Col xs={{ span: 24 }} sm={{ span: 24 }} md={{ span: 9, offset: 2 }}>
           <p>Igniting the Thought!</p>
           <p id="footer-sast-description">
-            南京邮电大学大学生科学技术协会（Students' Association for Science
-            and
-            Technology）是在校团委指导下，独立开展活动的学生科技文化及学术研究组织。
+            南京邮电大学大学生科学技术协会（Students' Association for Science and Technology）是在校团委指导下，独立开展活动的学生科技文化及学术研究组织。
           </p>
         </Col>
         <Col xs={{ span: 24 }} sm={{ span: 24 }} md={{ span: 9, offset: 2 }}>

@@ -42,6 +42,11 @@ export default function CompetitionManage() {
           }}
           items={[
             {
+              itemKey: "back",
+              text: "返回列表",
+              icon: <IconChevronLeft size="large" />,
+            },
+            {
               itemKey: "",
               text: "比赛设置",
               icon: <IconSetting size="large" />,
@@ -60,11 +65,6 @@ export default function CompetitionManage() {
               itemKey: "authorize",
               text: "管理员授权",
               icon: <IconIdCard size="large" />,
-            },
-            {
-              itemKey: "back",
-              text: "返回",
-              icon: <IconChevronLeft size="large" />,
             },
           ]}
           footer={{

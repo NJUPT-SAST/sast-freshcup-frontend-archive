@@ -20,8 +20,8 @@ UI组件库: Semi Design
 
 ### 安装依赖
 
-- Node.js ≥ 16 （如果当前使用的 Node.js 版本＜16，在运行本项目前应先升级 Node.js 版本）
-- 2 ＞ Yarn ≥ 1 （本项目原生使用 Yarn 构建，混用其他包管理器安装依赖可能会导致不可预知的错误）
+- 16 ≤ Node.js < 17 （如果当前使用的 Node.js 版本 < 16，在运行本项目前应先升级 Node.js 版本，此外不推荐使用非 LTS 版本 Node.js）
+- 1 ≤ Yarn < 2 （本项目原生使用 Yarn 构建，混用其他包管理器安装依赖可能会导致不可预知的错误）
 
 ### 实时预览
 
@@ -29,7 +29,7 @@ UI组件库: Semi Design
 yarn start
 ```
 
-项目将会运行在 http://localhost:3000
+项目将会运行在 <http://localhost:3000>
 
 ### 项目打包
 
