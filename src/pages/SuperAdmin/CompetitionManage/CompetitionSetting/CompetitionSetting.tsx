@@ -38,27 +38,29 @@ export default function CompetitionSetting() {
    * @param values 表单的数据
    */
   function handleSubmit(values: Record<string, any>) {
-    setLoading(true)
-    editContestSettings(competitionId, values.name, values.start, values.end, values.description).then((res: AxiosResponse) => {
-      if (res.data.data === 'success') {
-        setCompetitionInfo({name: values.name, description: values.description, start: values.start, end: values.end})
+    if (values.name !== undefined && values.start !== undefined && values.end !== undefined && values.description !== undefined) {
+      setLoading(true)
+      editContestSettings(competitionId, values.name, values.start, values.end, values.description).then((res: AxiosResponse) => {
+        if (res.data.data === 'success') {
+          setCompetitionInfo({ name: values.name, description: values.description, start: values.start, end: values.end })
+          setLoading(false)
+          Notification.success({
+            title: '😄️ 修改成功',
+            duration: 2,
+            position: 'top',
+          })
+          setCompetitionInfo({ name: values.name, description: values.description, start: values.start, end: values.end })
+        }
+      }).catch(err => {
         setLoading(false)
-        Notification.success({
-          title: '😄️ 修改成功',
+        Notification.error({
+          title: '😭️ 修改失败，请联系管理员',
           duration: 2,
           position: 'top',
+          content: err.message
         })
-        setCompetitionInfo({name: values.name, description: values.description, start: values.start, end: values.end})
-      }
-    }).catch(err => {
-      setLoading(false)
-      Notification.error({
-        title: '😭️ 修改失败，请联系管理员',
-        duration: 2,
-        position: 'top',
-        content: err.message
       })
-    })
+    }
   }
 
   //获取比赛详情
@@ -70,22 +72,28 @@ export default function CompetitionSetting() {
 
   return (
     <Fragment>
-      <Form render={({ values,formApi }) => (
+      <Form render={({ values, formApi }) => (
         <Fragment>
           <div className='inputGroup'>
             <Title heading={6} className="title">比赛名称</Title>
-            <Form.Input className="input" name='name' field='name' disabled={loading} noLabel placeholder='请填写比赛名称'></Form.Input>
+            <Form.Input className="input" name='name' required field='name' rules={[{required: true, message:'请填写信息'}]} disabled={loading} noLabel placeholder='请填写比赛名称'></Form.Input>
           </div>
           <div className='inputGroup'>
-            <Title heading={6} className="title" style={{ marginBottom: 10 }}>比赛时间</Title>
-            <Form.Label>开始</Form.Label>
-            <Form.DatePicker type="dateTime" density="compact" field='start' disabled={loading} name='start' noLabel />
-            <Form.Label>结束</Form.Label>
-            <Form.DatePicker type="dateTime" density="compact" field='end' disabled={loading} name='end' noLabel />
+            <Title heading={6} className="title">比赛时间</Title>
+            <div className='datePicker'>
+              <div className='input'>
+                <Form.Label>开始</Form.Label>
+                <Form.DatePicker type="dateTime" density="compact" rules={[{required: true, message:'请填写信息'}]} field='start' disabled={loading} name='start' noLabel />
+              </div>
+              <div className='input'>
+                <Form.Label>结束</Form.Label>
+                <Form.DatePicker type="dateTime" density="compact" rules={[{required: true, message:'请填写信息'}]} field='end' disabled={loading} name='end' noLabel />
+              </div>
+            </div>
           </div>
           <div className='inputGroup'>
             <Title heading={6} className="title">比赛描述</Title>
-            <Form.TextArea className='input' name='description' field='description' disabled={loading} noLabel placeholder='请填写比赛的描述' />
+            <Form.TextArea className='input' name='description' required rules={[{required: true, message:'请填写信息'}]} field='description' disabled={loading} noLabel placeholder='请填写比赛的描述' />
           </div>
           <CompetitionSettingForm />
         </Fragment>
