@@ -9,6 +9,7 @@ import {
   IconChevronLeft,
 } from "@douyinfe/semi-icons";
 import { Navigate, Outlet, useNavigate, useLocation } from "react-router-dom";
+import SemiFooter from "../../../components/Footer/Footer";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -72,13 +73,18 @@ export default function CompetitionManage() {
           }}
         />
       </Sider>
-      <Content
-        style={{
-          padding: "24px",
-          backgroundColor: "var(--semi-color-bg-0)",
-        }}
-      >
-        <Outlet />
+      <Content style={{minHeight: "100%"}}>
+        <Content
+          style={{
+            padding: "24px",
+            backgroundColor: "var(--semi-color-bg-0)",
+          }}
+        >
+          <Outlet />
+        </Content>
+        <Footer>
+          <SemiFooter />
+        </Footer>
       </Content>
     </Layout>
   );

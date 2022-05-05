@@ -1,15 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Button,
-  Card,
-  Layout,
-  Col,
-  Row,
-  Pagination,
-  Spin,
-} from "@douyinfe/semi-ui";
-import { IconPlus } from "@douyinfe/semi-icons";
+import { Button, Card, Layout, Pagination, Spin } from "@douyinfe/semi-ui";
 import { getContestList } from "../../../api/superadmin";
 import "./CompetitionList.sass";
 
@@ -39,7 +30,11 @@ export default function CompetitionList() {
   return (
     <Content className="contest-list-wrapper">
       <div className="add-contest-button-wrapper">
-        <Button className="add-contest-button" theme="solid" type="primary">
+        <Button
+          className="add-contest-button"
+          theme="borderless"
+          type="primary"
+        >
           创建比赛
         </Button>
       </div>
