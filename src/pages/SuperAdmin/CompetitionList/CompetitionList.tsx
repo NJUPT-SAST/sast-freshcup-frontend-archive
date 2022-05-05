@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Layout, Col, Row, Pagination } from "@douyinfe/semi-ui";
+import {
+  Button,
+  Card,
+  Layout,
+  Col,
+  Row,
+  Pagination,
+  Spin,
+} from "@douyinfe/semi-ui";
 import { IconPlus } from "@douyinfe/semi-icons";
 import { getContestList } from "../../../api/superadmin";
 import "./CompetitionList.sass";
@@ -9,79 +17,70 @@ const { Content } = Layout;
 
 export default function CompetitionList() {
   const navigate = useNavigate();
-  const [contestRecords, setContestRecords] = useState([]);
-  const [totalContest, setTotalContest] = useState(1);
+  const [contestRecords, setContestRecords] = useState<Array<48>>([]);
+  const [totalContest, setTotalContest] = useState<number>(0);
+  const [contestListLoading, setContextListLoading] = useState<boolean>(false);
 
-  const [filter, setFilter] = useState({
+  const [filter, setFilter] = useState<any>({
     pageNum: 1,
-    pageSize: 15,
+    pageSize: 12,
   });
   useEffect(() => {
-    let truePageSize = filter.pageSize;
-    if (filter.pageNum === 1) truePageSize = filter.pageSize - 1;
-    getContestList(filter.pageNum, truePageSize).then((res) => {
+    setContextListLoading(true);
+    getContestList(filter.pageNum, filter.pageSize).then((res) => {
       console.log(res);
       setContestRecords(res.data.data.records);
       setTotalContest(res.data.data.total);
+      setContextListLoading(false);
     });
   }, [filter]);
 
-  function AddContestCard() {
-    console.log(filter.pageNum);
-    if (filter.pageNum === 1)
-      return (
-        <div
-          onClick={() => {
-            navigate("new");
-          }}
-        >
-          <Card className="add-contest-card common-card">
-            <IconPlus size="extra-large" />
-          </Card>
-        </div>
-      );
-    else return null;
-  }
-
   return (
     <Content className="contest-list-wrapper">
-      <div className="contest-list">
-        <AddContestCard />
-        {contestRecords.map((item: any, index: number) => {
-          return (
-            <Card
-              key={index}
-              className="common-card"
-              title={item.name}
-              headerExtraContent={
-                <Button
-                  theme="borderless"
-                  type="tertiary"
-                  onClick={() => {
-                    console.log(item);
-                    navigate(item.id.toString());
-                  }}
-                >
-                  查看
-                </Button>
-              }
-            >
-              <span className="card-description">{item.description}</span>
-            </Card>
-          );
-        })}
+      <div className="add-contest-button-wrapper">
+        <Button className="add-contest-button" theme="solid" type="primary">
+          创建比赛
+        </Button>
       </div>
+      <Spin size="large" spinning={contestListLoading}>
+        <div className="contest-list">
+          {contestRecords.map((item: any, index: number) => {
+            return (
+              <Card
+                key={index}
+                className="common-card"
+                title={item.name}
+                headerExtraContent={
+                  <Button
+                    theme="borderless"
+                    type="tertiary"
+                    onClick={() => {
+                      console.log(item);
+                      navigate(item.id.toString());
+                    }}
+                  >
+                    查看
+                  </Button>
+                }
+              >
+                <span className="card-description">{item.description}</span>
+              </Card>
+            );
+          })}
+        </div>
+      </Spin>
       <Pagination
         total={totalContest}
-        style={{ marginTop: 12 }}
+        style={{ margin: "12px 0" }}
         pageSize={filter.pageSize}
-        pageSizeOpts={[15, 30, 50]}
+        pageSizeOpts={[12, 24, 48]}
         onPageChange={(currentPage: number) => {
           setFilter({ ...filter, pageNum: currentPage });
         }}
         onPageSizeChange={(pageSize: number) => {
           setFilter({ ...filter, pageSize });
         }}
+        showTotal
         showSizeChanger
       ></Pagination>
     </Content>

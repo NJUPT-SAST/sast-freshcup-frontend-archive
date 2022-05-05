@@ -1,50 +1,51 @@
 .contest-list-wrapper
   padding: 24px
-  background-color: var(--semi-color-bg-0)
   display: flex
   flex-direction: column
   align-items: center
-  .contest-list
+  .add-contest-button-wrapper
+    width: 100%
     display: flex
     flex-direction: row
-    flex-wrap: wrap
-    flex-basis: 330px
-    justify-content: flex-start
-    padding: auto
-    @media screen and (1698px < width)
-      width: 1650px
-    @media screen and (1038px < width < 1698px)
-      width: 990px
-    @media screen and (768px < width < 1038px)
-      width: 660px
-    @media screen and (width < 768px)
-      width: 330px
-  .add-contest-card
+    justify-content: end
+    .add-contest-button
+      @media (min-width: 1200px)
+        margin: 6px 11.5% 6px 0
+      @media (max-width: 1200px)
+        margin: 6px 7% 6px 0
+      @media (max-width: 576px)
+        margin: auto
+  .contest-list
     display: flex
-    align-items: center
-    justify-content: center
-    &:hover
-      cursor: pointer
-      &.semi-card-bordered
-        background-color: var(--semi-color-tertiary-light-default)
-        border: 0
-    &:active
-      &.semi-card-bordered
-        background-color: var(--semi-color-tertiary-light-hover)
-        border: 0
-  .common-card
-    width: 300px
-    height: 174px
-    margin: 15px
-    flex-shrink: 0
-    .semi-card-header-wrapper
-      display: flex
-      align-items: center
-    .card-description
-      display: -webkit-box
-      overflow: hidden
-      -webkit-box-orient: vertical
-      text-overflow: -o-ellipsis-lastline
-      text-overflow: ellipsis
-      word-break: normal
-      -webkit-line-clamp: 3
+    flex: auto
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: flex-start
+    @media (min-width: 1200px)
+      padding: 0 10%
+    @media (max-width: 1200px)
+      padding: 0 5%
+    @media (max-width: 576px)
+      padding: auto
+    .common-card
+      height: 174px
+      @media (min-width: 1200px)
+        width: 22%
+        margin: 1.5%
+      @media (max-width: 1200px)
+        width: 29.33%
+        margin: 2%
+      @media (max-width: 576px)
+        width: 100%
+        margin: 12px 0
+      .semi-card-header-wrapper
+        display: flex
+        align-items: center
+      .card-description
+        display: -webkit-box
+        overflow: hidden
+        -webkit-box-orient: vertical
+        text-overflow: -o-ellipsis-lastline
+        text-overflow: ellipsis
+        word-break: normal
+        -webkit-line-clamp: 3
