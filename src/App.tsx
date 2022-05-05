@@ -50,9 +50,18 @@ function App() {
           <Route index element={<SuperAdminCompetitionList />}></Route>
           <Route path=":id" element={<SuperAdminCompetitionManage />}>
             <Route index element={<SuperAdminCompetitionSetting />}></Route>
-            <Route path="question" element={<SuperAdminQuestionSetting />}></Route>
-            <Route path="account" element={<SuperAdminStudentAccount />}></Route>
-            <Route path="authorize" element={<SuperAdminAuthorizeAdmin />}></Route>
+            <Route
+              path="question"
+              element={<SuperAdminQuestionSetting />}
+            ></Route>
+            <Route
+              path="account"
+              element={<SuperAdminStudentAccount />}
+            ></Route>
+            <Route
+              path="authorize"
+              element={<SuperAdminAuthorizeAdmin />}
+            ></Route>
           </Route>
         </Route>
       ) : null}

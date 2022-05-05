@@ -16,7 +16,6 @@ export default function CompetitionList() {
     pageNum: 1,
     pageSize: 12,
   });
-
   useEffect(() => {
     setContextListLoading(true);
     getContestList(filter.pageNum, filter.pageSize).then((res) => {

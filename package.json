@@ -73,7 +73,8 @@
           "build",
           "ci",
           "chore",
-          "revert"
+          "revert",
+          "merge"
         ],
         "scope": {
           "required": false,
