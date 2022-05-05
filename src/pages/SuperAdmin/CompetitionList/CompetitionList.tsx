@@ -16,7 +16,6 @@ export default function CompetitionList() {
     pageNum: 1,
     pageSize: 15,
   });
-
   useEffect(() => {
     let truePageSize = filter.pageSize;
     if (filter.pageNum === 1) truePageSize = filter.pageSize - 1;

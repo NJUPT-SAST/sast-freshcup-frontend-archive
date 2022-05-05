@@ -8,7 +8,7 @@ import {
   IconCode,
   IconChevronLeft,
 } from "@douyinfe/semi-icons";
-import { Navigate, Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useNavigate, useLocation, useParams } from "react-router-dom";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -16,6 +16,8 @@ export default function CompetitionManage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [navigation, setNavigation] = useState("");
+  const competitionId = useParams()
+  // console.log(competitionId)
 
   useEffect(() => {
     // console.log((location?.pathname as any).match(/\/([^/]*)$/g)[0].match(/[a-z][^\s]*/g));
