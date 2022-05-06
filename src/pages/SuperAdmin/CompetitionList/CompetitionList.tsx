@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { Button, Card, Layout, Pagination, Spin } from "@douyinfe/semi-ui";
 import { getContestList } from "../../../api/superadmin";
 import "./CompetitionList.sass";
+import SemiFooter from "../../../components/Footer/Footer";
 
-const { Content } = Layout;
+const { Content, Footer } = Layout;
 
 export default function CompetitionList() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function CompetitionList() {
   });
   useEffect(() => {
     setContextListLoading(true);
-    getContestList(filter.pageNum, filter.pageSize).then((res) => {
+    getContestList(filter.pageNum, filter.pageSize).then((res: any) => {
       console.log(res);
       setContestRecords(res.data.data.records);
       setTotalContest(res.data.data.total);
@@ -27,57 +28,62 @@ export default function CompetitionList() {
   }, [filter]);
 
   return (
-    <Content className="contest-list-wrapper">
-      <div className="add-contest-button-wrapper">
-        <Button
-          className="add-contest-button"
-          theme="borderless"
-          type="primary"
-        >
-          创建比赛
-        </Button>
-      </div>
-      <Spin size="large" spinning={contestListLoading}>
-        <div className="contest-list">
-          {contestRecords.map((item: any, index: number) => {
-            return (
-              <Card
-                key={index}
-                className="common-card"
-                title={item.name}
-                headerExtraContent={
-                  <Button
-                    theme="borderless"
-                    type="tertiary"
-                    onClick={() => {
-                      console.log(item);
-                      navigate(item.id.toString());
-                    }}
-                  >
-                    查看
-                  </Button>
-                }
-              >
-                <span className="card-description">{item.description}</span>
-              </Card>
-            );
-          })}
+    <Layout>
+      <Content className="contest-list-wrapper">
+        <div className="add-contest-button-wrapper">
+          <Button
+            className="add-contest-button"
+            theme="borderless"
+            type="primary"
+          >
+            创建比赛
+          </Button>
         </div>
-      </Spin>
-      <Pagination
-        total={totalContest}
-        style={{ margin: "12px 0" }}
-        pageSize={filter.pageSize}
-        pageSizeOpts={[12, 24, 48]}
-        onPageChange={(currentPage: number) => {
-          setFilter({ ...filter, pageNum: currentPage });
-        }}
-        onPageSizeChange={(pageSize: number) => {
-          setFilter({ ...filter, pageSize });
-        }}
-        showTotal
-        showSizeChanger
-      ></Pagination>
-    </Content>
+        <Spin size="large" spinning={contestListLoading}>
+          <div className="contest-list">
+            {contestRecords.map((item: any, index: number) => {
+              return (
+                <Card
+                  key={index}
+                  className="common-card"
+                  title={item.name}
+                  headerExtraContent={
+                    <Button
+                      theme="borderless"
+                      type="tertiary"
+                      onClick={() => {
+                        console.log(item);
+                        navigate(item.id.toString());
+                      }}
+                    >
+                      查看
+                    </Button>
+                  }
+                >
+                  <span className="card-description">{item.description}</span>
+                </Card>
+              );
+            })}
+          </div>
+        </Spin>
+        <Pagination
+          total={totalContest}
+          style={{ margin: "12px 0" }}
+          pageSize={filter.pageSize}
+          pageSizeOpts={[12, 24, 48]}
+          onPageChange={(currentPage: number) => {
+            setFilter({ ...filter, pageNum: currentPage });
+          }}
+          onPageSizeChange={(pageSize: number) => {
+            setFilter({ ...filter, pageSize });
+          }}
+          showTotal
+          showSizeChanger
+        ></Pagination>
+      </Content>
+      <Footer>
+        <SemiFooter />
+      </Footer>
+    </Layout>
   );
 }

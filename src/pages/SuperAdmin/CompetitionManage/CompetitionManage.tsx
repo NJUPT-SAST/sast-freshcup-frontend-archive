@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Nav, Layout } from "@douyinfe/semi-ui";
 import {
-  IconHome,
   IconSetting,
   IconUserSetting,
   IconIdCard,
@@ -9,7 +8,7 @@ import {
   IconChevronLeft,
 } from "@douyinfe/semi-icons";
 import SemiFooter from "../../../components/Footer/Footer";
-import { Navigate, Outlet, useNavigate, useLocation, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useLocation, useParams } from "react-router-dom";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -17,7 +16,7 @@ export default function CompetitionManage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [navigation, setNavigation] = useState("");
-  const competitionId = useParams()
+  const competitionId = useParams();
   // console.log(competitionId)
 
   useEffect(() => {
@@ -75,7 +74,7 @@ export default function CompetitionManage() {
           }}
         />
       </Sider>
-      <Content style={{minHeight: "100%"}}>
+      <Layout style={{ minHeight: "100%" }}>
         <Content
           style={{
             padding: "24px",
@@ -87,7 +86,7 @@ export default function CompetitionManage() {
         <Footer>
           <SemiFooter />
         </Footer>
-      </Content>
+      </Layout>
     </Layout>
   );
 }
