@@ -11,8 +11,8 @@ const { Title } = Typography;
 export default function CompetitionSetting() {
   const [loading, setLoading] = useState(false);
   const competitionData = useParams()
-  const [competitionInfo, setCompetitionInfo] = useState<any>()
   const competitionId = competitionData.id ? competitionData.id : ""
+  const [competitionInfo, setCompetitionInfo] = useState<any>()
   /**
    * 在这里获取到 FormApi 对表单进行操作
    * @returns 返回表单的提交按钮

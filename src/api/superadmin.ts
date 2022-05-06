@@ -40,14 +40,39 @@ export function getContestDetailed(id: string) {
  * @param description 比赛描述
  * @returns axios api
  */
-export function editContestSettings(id: string,name: string,start: string,end: string, description: string){
+export function editContestSettings(
+  id: string,
+  name: string,
+  start: string,
+  end: string,
+  description: string
+) {
   return axios({
     method: "POST",
-    url: '/superadmin/contest/edit',
+    url: "/superadmin/contest/edit",
     headers: {
-      TOKEN: localStorage.getItem('token') || 'null',
+      TOKEN: localStorage.getItem("token") || "null",
     },
-    data: { id,name,start,end,description },
-  })
+    data: { id, name, start, end, description },
+  });
 }
 
+/**
+ * 导入选手帐号
+ * @param id 比赛id
+ * @param file 选手帐号csv文件
+ * @returns axios api
+ */
+export function importStudent(id: string, file: File) {
+  const formData = new FormData();
+  formData.append("user_data", file);
+  return axios({
+    method: "POST",
+    url: "/superadmin/contest/import",
+    headers: {
+      TOKEN: localStorage.getItem("token") || "null",
+    },
+    data: formData,
+    params: { id: id },
+  });
+}

@@ -1,23 +1,21 @@
 import { useEffect, useState } from "react";
 import { Nav, Layout } from "@douyinfe/semi-ui";
 import {
-  IconHome,
   IconSetting,
   IconUserSetting,
   IconIdCard,
   IconCode,
   IconChevronLeft,
 } from "@douyinfe/semi-icons";
-import { Navigate, Outlet, useNavigate, useLocation, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import './CompetitionManage.sass'
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 export default function CompetitionManage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [navigation, setNavigation] = useState("");
-  const competitionId = useParams()
-  // console.log(competitionId)
 
   useEffect(() => {
     // console.log((location?.pathname as any).match(/\/([^/]*)$/g)[0].match(/[a-z][^\s]*/g));
@@ -32,6 +30,7 @@ export default function CompetitionManage() {
       <Sider style={{ backgroundColor: "var(--semi-color-bg-1)" }}>
         <Nav
           style={{ maxWidth: 220, height: "100%" }}
+          className="sidebar"
           defaultSelectedKeys={[navigation]}
           onSelect={({ itemKey }) => {
             console.log(itemKey);
